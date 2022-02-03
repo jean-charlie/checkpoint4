@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Homepage
+{% endblock %}
+{% block stylesheet %}
+  {{ parent() }}
+  {{ encore_entry_link_tags('home') }}
+{% endblock %}
+{% block body %}
+	{% include "home/welcome.html.twig" %}
+  <div class="content-card">
+  {% for peint in peints %}
+		<div class="col">
+			<div class="card w-50 p-3">
+				<img src="{{peint.photo}}" class="card-img-top" alt="{{peint.nom}}">
+				<div class="card-body">
+					<h5 class="card-title">{{peint.nom}}</h5>
+					<p class="card-text"></p>
+					<a href="{{ path('show', {'nom': peint.nom}) }}" class="btn btn-primary" role="button">Voir la fiche</a>
+				</div>
+			</div>
+		</div>
+  {% endfor %}
+	</div>
+	
+{% endblock %}
