@@ -23,7 +23,7 @@ class HomeController extends AbstractController
         ]);
     }
     /**
-     * @Route("/{nom}", name="show", methods={"GET"})
+     * @Route("/show/{nom}", name="show", methods={"GET"})
      * 
      */
     public function show(Peinture $peinture, $nom): Response

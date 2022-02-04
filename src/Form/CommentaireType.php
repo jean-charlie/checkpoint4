@@ -2,29 +2,28 @@
 
 namespace App\Form;
 
-use App\Entity\Peinture;
+use App\Entity\Commentaire;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PeintureType extends AbstractType
+class CommentaireType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom', TextType::class)
-            ->add('prix')
-            ->add('description', TextareaType::class)
-            ->add('photo')
+            ->add('auteur', TextType::class)
+            ->add('contenu', TextareaType::class)
+            ->add('peinture', null, ['choice_label' => 'nom'])
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Peinture::class,
+            'data_class' => Commentaire::class,
         ]);
     }
 }

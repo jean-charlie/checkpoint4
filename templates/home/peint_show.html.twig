@@ -1,21 +1,39 @@
 {% extends 'base.html.twig' %}
-{% block title %}La fiche d'un tableau{% endblock %}
+{% block title %}La fiche d'un tableau
+{% endblock %}
 
 {% block body %}
-<div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="{{peint.photo}}" class="card-img-top" alt="{{peint.nom}}">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">{{peint.nom}}</h5>
-        <p class="card-text">{{peint.description}}</p>
-        <p class="card-text"><medium class="text-muted">{{ peint.prix|number_format(2, '.',) }}€</medium></p>
-      </div>
-    </div>
-  </div>
-</div>
+	<div class="card mb-3" style="max-width: 540px;">
+		<div class="row g-0">
+			<div class="col-md-4">
+				<img src="{{peint.photo}}" class="card-img-top" alt="{{peint.nom}}">
+			</div>
+			<div class="col-md-8">
+				<div class="card-body">
+					<h5 class="card-title">{{peint.nom}}</h5>
+					<p class="card-text">{{peint.description}}</p>
+					<p class="card-text">
+						<medium class="text-muted">{{ peint.prix|number_format(2, '.',) }}€</medium>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
 
-<a href="{{ path('home')}}">Retour à la liste des Tableaux</a>
+	<h5>Commentaires</h5>
+	<div class="card mb-3" style="max-width: 540px;">
+		{% for commentaire in peint.commentaires %}
+			<div class="row g-0">
+				<div class="col-md-8">
+					<div class="card-body">
+						<h5 class="card-title">{{ commentaire.auteur }}</h5>
+						<p class="card-text">{{ commentaire.contenu }}</p>
+					</div>
+				</div>
+			</div>
+
+		{% endfor %}
+	</div>
+
+	<a href="{{ path('home')}}">Retour à la liste des Tableaux</a>
 {% endblock %}

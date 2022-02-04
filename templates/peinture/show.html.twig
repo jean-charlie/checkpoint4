@@ -6,60 +6,22 @@
     <h1>Peinture</h1>
 
     <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ peinture.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ peinture.nom }}</td>
-            </tr>
-            <tr>
-                <th>Largeur</th>
-                <td>{{ peinture.largeur }}</td>
-            </tr>
-            <tr>
-                <th>Hauteur</th>
-                <td>{{ peinture.hauteur }}</td>
-            </tr>
-            <tr>
-                <th>EnVente</th>
-                <td>{{ peinture.enVente ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Prix</th>
-                <td>{{ peinture.prix }}</td>
-            </tr>
-            <tr>
-                <th>DateRealisation</th>
-                <td>{{ peinture.dateRealisation ? peinture.dateRealisation|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ peinture.createdAt ? peinture.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ peinture.description }}</td>
-            </tr>
-            <tr>
-                <th>Portfolio</th>
-                <td>{{ peinture.portfolio ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ peinture.slug }}</td>
-            </tr>
-            <tr>
-                <th>File</th>
-                <td>{{ peinture.file }}</td>
-            </tr>
-            <tr>
-                <th>Photo</th>
-                <td>{{ peinture.photo }}</td>
-            </tr>
-        </tbody>
+    <div class="card mb-3 text-center">
+		<div class="row g-0">
+			<div class="col-md-4">
+				<img src="{{ peinture.photo }}" class="img-fluid rounded-start" alt="{{ peinture.nom }}">
+			</div>
+			<div class="col-md-8">
+				<div class="card-body">
+					<h5 class="card-title">{{ peinture.nom }}</h5>
+					<p class="card-text">Description:
+						{{ peinture.description }}</p>
+					<p class="card-text">{{ peinture.prix|number_format(2, '.',) }}€</p>
+				</div>
+			</div>
+		</div>
+	</div>
+        
     </table>
 
     <a href="{{ path('peinture_index') }}">back to list</a>

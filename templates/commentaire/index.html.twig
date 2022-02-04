@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commentaire index
+{% endblock %}
+
+{% block body %}
+	<h1>Commentaires</h1>
+	<div class="col-md-8">
+		{% for commentaire in commentaires %}
+			<div class="card-body">
+				<h5 class="card-title">{{ commentaire.auteur }}</h5>
+				<p class="card-text">{{ commentaire.contenu }}</p>
+			</div>
+			<tr>
+				<td>
+					<a href="{{ path('commentaire_show', {'id': commentaire.id}) }}">show</a>
+					<a href="{{ path('commentaire_edit', {'id': commentaire.id}) }}">edit</a>
+				</td>
+			</tr>
+		{% else %}
+			<tr>
+				<td colspan="6">no records found</td>
+			</tr>
+		{% endfor %}
+	</div>
+
+	<a href="{{ path('commentaire_new') }}">Create new</a>
+{% endblock %}

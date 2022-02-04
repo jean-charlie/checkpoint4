@@ -22,7 +22,6 @@ class PeintureController extends AbstractController
      */
     public function index(PeintureRepository $peintureRepository): Response
     {
-        dd("message");
         return $this->render('peinture/index.html.twig', [
             'peintures' => $peintureRepository->findAll(),
         ]);

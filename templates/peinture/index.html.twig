@@ -1,57 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Peinture index{% endblock %}
+{% block title %}Peinture index
+{% endblock %}
 
 {% block body %}
-    <h1>Peinture index</h1>
+	<h1>Peintures</h1>
+	<div class="card mb-3" style="max-width: 540px;">
+		{% for peinture in peintures %}
+			<div class="row g-0 text-center">
+				<div class="col-md-4">
+					<img src="{{ peinture.photo }}" class="img-fluid rounded-start" alt="...">
+				</div>
+				<div class="col-md-8">
+					<div class="card-body">
+						<h5 class="card-title">Nom:
+							{{ peinture.nom }}</h5>
+						<p class="card-text">Description:
+							{{ peinture.description }}</p>
+						<p class="card-text">Prix:
+							{{ peinture.prix }}</p>
+						<p class="card-text">
+							<small class="text-muted">Last updated 3 mins ago</small>
+						</p>
+					</div>
+				</div>
+			</div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Largeur</th>
-                <th>Hauteur</th>
-                <th>EnVente</th>
-                <th>Prix</th>
-                <th>DateRealisation</th>
-                <th>CreatedAt</th>
-                <th>Description</th>
-                <th>Portfolio</th>
-                <th>Slug</th>
-                <th>File</th>
-                <th>Photo</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for peinture in peintures %}
-            <tr>
-                <td>{{ peinture.id }}</td>
-                <td>{{ peinture.nom }}</td>
-                <td>{{ peinture.largeur }}</td>
-                <td>{{ peinture.hauteur }}</td>
-                <td>{{ peinture.enVente ? 'Yes' : 'No' }}</td>
-                <td>{{ peinture.prix }}</td>
-                <td>{{ peinture.dateRealisation ? peinture.dateRealisation|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ peinture.createdAt ? peinture.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ peinture.description }}</td>
-                <td>{{ peinture.portfolio ? 'Yes' : 'No' }}</td>
-                <td>{{ peinture.slug }}</td>
-                <td>{{ peinture.file }}</td>
-                <td>{{ peinture.photo }}</td>
-                <td>
-                    <a href="{{ path('peinture_show', {'id': peinture.id}) }}">show</a>
-                    <a href="{{ path('peinture_edit', {'id': peinture.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="14">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+			<tr>
+				<td>
+					<a href="{{ path('peinture_show', {'id': peinture.id}) }}">show</a>
+					<a href="{{ path('peinture_edit', {'id': peinture.id}) }}">edit</a>
+				</td>
+			</tr>
+		{% else %}
+			<tr>
+				<td colspan="14">no records found</td>
+			</tr>
+		{% endfor %}
+	</div>
 
-    <a href="{{ path('peinture_new') }}">Create new</a>
+
+	<a href="{{ path('peinture_new') }}">Create new</a>
 {% endblock %}
